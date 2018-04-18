@@ -41,7 +41,6 @@ void Draw() {
 	glMatrixMode(GL_MODELVIEW);			//Projeta a imagem na tela
 	glLoadIdentity();					//Carrega MatrixMode.
 
-
 	glBegin(GL_POLYGON);        										//Inicia o desenho de um poligono.
 	glColor3f(0.02,0.02,0.02);													//Cor do poligono.
 	for (float i = 0; i < 2*PI ; i+=0.1){								//Rotaciona os pontos do poligono para formar um circulo.
@@ -49,10 +48,9 @@ void Draw() {
 	}
  	glEnd();															//Finaliza o circulo.
 
-
 	/*Desenha Circulo*/
-	glMatrixMode(GL_MODELVIEW);			//Projeta a imagem na tela
-	glLoadIdentity();					//Carrega MatrixMode.
+	//glMatrixMode(GL_MODELVIEW);			//Projeta a imagem na tela
+	//glLoadIdentity();					//Carrega MatrixMode.
 
 
 	glBegin(GL_POLYGON);        										//Inicia o desenho de um poligono.
@@ -78,12 +76,12 @@ void Movimenta() {
 
 	cout << XcirHead << " - " << Xposition << " - " << YcirHead << " - " << Yposition << endl;
 
-	if(abs(Xposition - XcirHead) > 3) {
+	if(abs(Xposition - XcirHead) > 2) {
 		XcirHead += incXcir; //incrementa o centro do circulo em X.
 		XcirButt += incXcir;
 	}
 
-	if(abs((- Yposition + windowH) - YcirHead) > 3) {
+	if(abs((- Yposition + windowH) - (YcirHead - 19)) > 2) {
 		YcirHead += incYcir; //incrementa o centro do circulo em Y.
 		YcirButt += incYcir;
 	}
