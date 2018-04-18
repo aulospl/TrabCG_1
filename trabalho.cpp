@@ -14,22 +14,19 @@ int windowH = 600;						//Tamanho da tela na Vertical.
 
 /*Posicao do centro das figuras*/
 
-GLfloat XcirHead = 400;						//posicao em X do centro do quadrado.
-GLfloat YcirHead = 370;						//posicao em Y do centro do quadrado.
+GLfloat XcirHead = 400;						//posicao em X do centro da cabeça da aranha.
+GLfloat YcirHead = 370;						//posicao em Y do centro do cabeça da aranha.
 
-GLfloat XcirButt = 400;						//posicao em X do centro do quadrado.
-GLfloat YcirButt = 300;						//posicao em Y do centro do quadrado.
+GLfloat XcirButt = 400;						//posicao em X do centro da bunda da aranha.
+GLfloat YcirButt = 300;						//posicao em Y do centro da bunda da aranha.
 
 
 /*Incremento de cada eixo das figuras*/
-GLfloat incXcir = 0;					//incremento em X do centro do triangulo.
-GLfloat incYcir = 0;					//incremento em Y do centro do triangulo.
+GLfloat incXcir = 0;					//incremento em X do circulo.
+GLfloat incYcir = 0;					//incremento em Y do circulo.
 
 GLint Xposition = 400;
 GLint Yposition = 370;
-
-//int globalflag = 0;
-
 
 /*Funcao responsavel por desenhar todas as fuguras na janela.*/
 void Draw() {
@@ -79,27 +76,17 @@ void Movimenta() {
 		Ycir = 40;
 	}*/
 
+	cout << XcirHead << " - " << Xposition << " - " << YcirHead << " - " << Yposition << endl;
 
-	//cout << "Mouse X" << Xposition << " Mouse Y" << Yposition << endl;
-	//cout << "Obj X" << XcirButt << " Obj Y" << YcirButt << endl;
+	if(abs(Xposition - XcirHead) > 3) {
+		XcirHead += incXcir; //incrementa o centro do circulo em X.
+		XcirButt += incXcir;
+	}
 
-		//int dist = sqrt(pow((XcirHead - Xposition),2) + pow((YcirHead - Yposition),2));
-	
-
-		cout << XcirHead << " - " << Xposition << " - " << YcirHead << " - " << Yposition << endl;
-		//cout << "distancia: " << dist << endl;
-
-		//if( dist > 100) {
-		if(abs(Xposition - XcirHead) > 3) {
-			XcirHead += incXcir; //incrementa o centro do circulo em X.
-			XcirButt += incXcir;
-		}
-
-		if(abs((- Yposition + windowH) - YcirHead) > 3) {
-			YcirHead += incYcir; //incrementa o centro do circulo em Y.
-			YcirButt += incYcir;
-		}
-		//}
+	if(abs((- Yposition + windowH) - YcirHead) > 3) {
+		YcirHead += incYcir; //incrementa o centro do circulo em Y.
+		YcirButt += incYcir;
+	}
 
 	glutPostRedisplay();				//Redesenha as figuras na janela.
 }
@@ -114,15 +101,6 @@ void Mouse(GLint botao, GLint estado,  GLint x, GLint y) {
 	
 		Xposition = x;
 		Yposition = y;
-
-		//int gap = abs(Xposition - XcirHead);
-
-		/*if(globalflag < 10) {
-			cout << "distancia " << gap << endl;
-			cout << "Mouse X" << Xposition << " Mouse Y" << Yposition << endl;
-			cout << "Obj X" << XcirButt << " Obj Y" << YcirButt << endl;
-			globalflag++;
-		}*/
 
 		incXcir = (x - XcirHead)/velPadrao;						//Incrementa X do circulo conforme click do mouse.
 		incYcir = ((-y + windowH)-YcirHead)/velPadrao;			//Incrementa Y do circulo conforme click do mouse.
