@@ -95,7 +95,7 @@ void Movimenta() {
 			XcirButt += incXcir;
 		}
 
-		if(abs(Yposition - YcirHead) > 3) {
+		if(abs((- Yposition + windowH) - YcirHead) > 3) {
 			YcirHead += incYcir; //incrementa o centro do circulo em Y.
 			YcirButt += incYcir;
 		}
