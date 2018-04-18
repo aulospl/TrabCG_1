@@ -83,22 +83,23 @@ void Movimenta() {
 	//cout << "Mouse X" << Xposition << " Mouse Y" << Yposition << endl;
 	//cout << "Obj X" << XcirButt << " Obj Y" << YcirButt << endl;
 
-		int dist = sqrt(pow((XcirHead - Xposition),2) + pow((YcirHead - Yposition),2));
+		//int dist = sqrt(pow((XcirHead - Xposition),2) + pow((YcirHead - Yposition),2));
 	
 
-		cout << "distancia: " << dist << endl;
+		cout << XcirHead << " - " << Xposition << " - " << YcirHead << " - " << Yposition << endl;
+		//cout << "distancia: " << dist << endl;
 
-		if( dist > 200) {
-		//if(abs(Xposition - XcirHead) > 3) {
+		//if( dist > 100) {
+		if(abs(Xposition - XcirHead) > 3) {
 			XcirHead += incXcir; //incrementa o centro do circulo em X.
 			XcirButt += incXcir;
-		//}
+		}
 
-		//if(abs(Yposition - YcirHead) > 3) {
+		if(abs(Yposition - YcirHead) > 3) {
 			YcirHead += incYcir; //incrementa o centro do circulo em Y.
 			YcirButt += incYcir;
-		//}
 		}
+		//}
 
 	glutPostRedisplay();				//Redesenha as figuras na janela.
 }
