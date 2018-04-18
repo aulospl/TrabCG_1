@@ -22,19 +22,17 @@ GLfloat YcirButt = 300;						//posicao em Y do centro do quadrado.
 
 
 /*Incremento de cada eixo das figuras*/
-GLfloat incXcirHead = 0;					//incremento em X do centro do triangulo.
-GLfloat incYcirHead = 0;					//incremento em Y do centro do triangulo.
-GLfloat incXcirButt = 0;					//incremento em X do centro do triangulo.
-GLfloat incYcirButt = 0;					//incremento em Y do centro do triangulo.
+GLfloat incXcir = 0;					//incremento em X do centro do triangulo.
+GLfloat incYcir = 0;					//incremento em Y do centro do triangulo.
 
-GLint Xposition = 0;
-GLint Yposition = 0;
+GLint Xposition = 400;
+GLint Yposition = 370;
 
-int globalflag = 0;
+//int globalflag = 0;
 
 
 /*Funcao responsavel por desenhar todas as fuguras na janela.*/
-void Draw(){
+void Draw() {
 	glClear(GL_COLOR_BUFFER_BIT);		//Limpa o buffer responsavel por desenhar
 
 	/*Quando se altera o tamanho da tela a imagem acompanha*/
@@ -73,7 +71,7 @@ void Draw(){
 }
 
 /*Funcao responsavel pela movimentacao das figuras*/
-void Movimenta(){
+void Movimenta() {
 
 	//Verifica se o circulo saiu da janela.
 	/*if(Xcir >windowW+20 || Xcir < -20 || Ycir >windowH+20 || Ycir < -20){
@@ -84,72 +82,55 @@ void Movimenta(){
 
 	//cout << "Mouse X" << Xposition << " Mouse Y" << Yposition << endl;
 	//cout << "Obj X" << XcirButt << " Obj Y" << YcirButt << endl;
-		
-		if(abs(Xposition - XcirButt) >= 50){
-			XcirHead += incXcirHead;
-			XcirButt += incXcirButt;
-		}
-		
-		if(abs(Yposition - YcirButt) >= 50){
-			YcirHead += incYcirButt;
-			YcirButt += incYcirButt;
-		}
-		
-		
-		/*
-		
-		if(abs(Xposition - XcirHead) >= 3)
-			XcirHead += incXcirHead; //incrementa o centro do circulo em X.
-		if(abs(Xposition - XcirButt) >= 3)
-			XcirButt += incXcirButt;
 
-		if(abs(Yposition - YcirButt) >= 3)
-			YcirHead += incYcirButt; //incrementa o centro do circulo em Y.
-		if(abs(Yposition - YcirButt) >= 3)
-			YcirButt += incYcirButt;
-		*/
+		int dist = sqrt(pow((XcirHead - Xposition),2) + pow((YcirHead - Yposition),2));
+	
+
+		cout << "distancia: " << dist << endl;
+
+		if( dist > 200) {
+		//if(abs(Xposition - XcirHead) > 3) {
+			XcirHead += incXcir; //incrementa o centro do circulo em X.
+			XcirButt += incXcir;
+		//}
+
+		//if(abs(Yposition - YcirHead) > 3) {
+			YcirHead += incYcir; //incrementa o centro do circulo em Y.
+			YcirButt += incYcir;
+		//}
+		}
+
 	glutPostRedisplay();				//Redesenha as figuras na janela.
 }
 
 /*Recebe comandos do mouse */
-void Mouse(GLint botao, GLint estado,  GLint x, GLint y){
+void Mouse(GLint botao, GLint estado,  GLint x, GLint y) {
 
 	int velPadrao = 100;									//Velocidade padronizada, sem ela fica muito rapido.
 
-	
-		if(botao == GLUT_RIGHT_BUTTON && estado == GLUT_DOWN){
-			cout << "STOP" << endl;
-			incXcirHead = 0;					
-			incYcirHead = 0;					
-			incXcirButt = 0;					
-			incYcirButt = 0;	
-		}
 	//Verifica se houve click com o botao esquerdo do mouse.
-	if(botao == GLUT_LEFT_BUTTON && estado == GLUT_DOWN){
+	if(botao == GLUT_LEFT_BUTTON && estado == GLUT_DOWN) {
 	
 		Xposition = x;
 		Yposition = y;
 
-		int gap = abs(Xposition - XcirHead);
+		//int gap = abs(Xposition - XcirHead);
 
-		if(globalflag < 10) {
+		/*if(globalflag < 10) {
 			cout << "distancia " << gap << endl;
 			cout << "Mouse X" << Xposition << " Mouse Y" << Yposition << endl;
 			cout << "Obj X" << XcirButt << " Obj Y" << YcirButt << endl;
-			cout << "XH " << XcirHead << " YH " << YcirHead << endl; 
-			//globalflag++;
-		}
+			globalflag++;
+		}*/
 
-		incXcirHead = (x- XcirHead)/velPadrao;						//Incrementa X do circulo conforme click do mouse.
-		incYcirHead = ((-y + windowH)-YcirHead)/velPadrao;			//Incrementa Y do circulo conforme click do mouse.
-
-		incXcirButt = (x- XcirButt)/velPadrao;						//Incrementa X do circulo conforme click do mouse.
-		incYcirButt = ((-y + windowH)-YcirButt)/velPadrao;			//Incrementa Y do circulo conforme click do mouse.
+		incXcir = (x - XcirHead)/velPadrao;						//Incrementa X do circulo conforme click do mouse.
+		incYcir = ((-y + windowH)-YcirHead)/velPadrao;			//Incrementa Y do circulo conforme click do mouse.
 	}
 }
 
 /*Responsavel por realizar a configuracao inicial da janela.*/
-void Inicializa(int argc, char **argv){
+void Inicializa(int argc, char **argv) {
+
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB );				//Buffer e esquema de cores.
 	glutInitWindowSize(windowW,windowH);						//Tamanho da tela em pixels.
@@ -159,14 +140,15 @@ void Inicializa(int argc, char **argv){
 }
 
 /*Coleta dados de entrada e realiza a saida atraves do monitor.*/
-void InputeOutput(){
+void InputeOutput() {
+
 	glutMouseFunc(Mouse);				//Funcao responsavel pelos controles do mouse.
 	glutDisplayFunc(Draw);				//Funcao responsavel por redesenhar a tela.
 	Movimenta();
 }
 
 /*Gerencia a criacao de janela, chamada de funcoes de controle e o loop principal*/
-int main(int argc, char **argv){
+int main(int argc, char **argv) {
 
 	Inicializa(argc, argv);
 	InputeOutput();
