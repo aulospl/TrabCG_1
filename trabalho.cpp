@@ -21,6 +21,25 @@ GLfloat XcirButt = 400;						//posicao em X do centro da bunda da aranha.
 GLfloat YcirButt = 300;						//posicao em Y do centro da bunda da aranha.
 
 
+GLfloat Xart1pata1 = 355;	
+GLfloat Xart2pata1 = 285;
+					
+GLfloat Yart1pata1 = 390;
+GLfloat Yart2pata1 = 395;
+GLfloat Yart1pata2 = 390;
+GLfloat Yart2pata2 = 395;
+	
+GLfloat Xart1pata2 = 445;	
+GLfloat Xart2pata2 = 515;	
+						
+GLfloat Yart1pata34 = 360;
+
+GLfloat Yart1pata56 = 400;	
+
+GLfloat Yart1pata78 = 400;	
+										
+
+
 /*Incremento de cada eixo das figuras*/
 GLfloat incXcir = 0;					//incremento em X do circulo.
 GLfloat incYcir = 0;					//incremento em Y do circulo.
@@ -49,8 +68,8 @@ void Draw() {
  	glEnd();															//Finaliza o circulo.
 
 	/*Desenha Circulo*/
-	//glMatrixMode(GL_MODELVIEW);			//Projeta a imagem na tela
-	//glLoadIdentity();					//Carrega MatrixMode.
+	glMatrixMode(GL_MODELVIEW);			//Projeta a imagem na tela
+	glLoadIdentity();					//Carrega MatrixMode.
 
 
 	glBegin(GL_POLYGON);        										//Inicia o desenho de um poligono.
@@ -58,7 +77,55 @@ void Draw() {
 	for (float i = 0; i < 2*PI ; i+=0.1){								//Rotaciona os pontos do poligono para formar um circulo.
  		glVertex2f(50.0*(float)cos(i)+XcirButt , 50.0*(float)sin(i)+YcirButt);	//Coordenadas do circulo de raio 20 pixels.
 	}
- 	glEnd();							
+ 	glEnd();	
+
+	/*Desenha articulação 1 da pata 1*/
+	glMatrixMode(GL_MODELVIEW);			//Projeta a imagem na tela.
+	glLoadIdentity();					//Carrega MatrixMode.
+
+	glBegin(GL_QUADS);				//Inicia o desenho do triangulo
+		glColor3f(0,0,0);					//cor do triangulo
+		glVertex2f(Xart1pata1-40,Yart1pata1+10);			//Coordenadas dos pontos do triangulo.
+		glVertex2f(Xart1pata1-40,Yart1pata1+25);
+		glVertex2f(Xart1pata1+20,Yart1pata1-5);
+		glVertex2f(Xart1pata1+30,Yart1pata1-25);
+	glEnd();							
+
+	/*Desenha articulação 2 da pata 1*/
+	glMatrixMode(GL_MODELVIEW);			//Projeta a imagem na tela.
+	glLoadIdentity();					//Carrega MatrixMode.
+
+	glBegin(GL_QUADS);				//Inicia o desenho do triangulo
+		glColor3f(0,0,0);					//cor do triangulo
+		glVertex2f(Xart2pata1-70,Yart2pata1-35);			//Coordenadas dos pontos do triangulo.
+		glVertex2f(Xart2pata1-40,Yart2pata1-15);
+		glVertex2f(Xart2pata1+30,Yart2pata1+20);
+		glVertex2f(Xart2pata1+30,Yart2pata1+5);
+	glEnd();									
+
+	/*articulação 1 da pata 2*/
+	glMatrixMode(GL_MODELVIEW);			//Projeta a imagem na tela.
+	glLoadIdentity();					//Carrega MatrixMode.
+
+	glBegin(GL_QUADS);				//Inicia o desenho do triangulo
+		glColor3f(0,0,0);					//cor do triangulo
+		glVertex2f(Xart1pata2+40,Yart1pata2+25);			//Coordenadas dos pontos do triangulo.
+		glVertex2f(Xart1pata2+40,Yart1pata2+10);
+		glVertex2f(Xart1pata2-30,Yart1pata2-25);
+		glVertex2f(Xart1pata2-20,Yart1pata2-5);
+	glEnd();							
+
+	/*Desenha articulação 2 da pata 2*/
+	glMatrixMode(GL_MODELVIEW);			//Projeta a imagem na tela.
+	glLoadIdentity();					//Carrega MatrixMode.
+
+	glBegin(GL_QUADS);				
+		glColor3f(0,0,0);					
+		glVertex2f(Xart2pata2+40,Yart2pata2-15);			
+		glVertex2f(Xart2pata2+70,Yart2pata2-35);
+		glVertex2f(Xart2pata2-30,Yart2pata2+5);
+		glVertex2f(Xart2pata2-30,Yart2pata2+20);
+	glEnd();								
 
 	glutSwapBuffers();					//Troca o buffer
 	glFlush();
@@ -79,11 +146,19 @@ void Movimenta() {
 	if(abs(Xposition - XcirHead) > 2) {
 		XcirHead += incXcir; //incrementa o centro do circulo em X.
 		XcirButt += incXcir;
+		Xart1pata1 += incXcir;
+		Xart1pata2 += incXcir;
+		Xart2pata1 += incXcir;
+		Xart2pata2 += incXcir;
 	}
 
 	if(abs((- Yposition + windowH) - (YcirHead - 19)) > 2) {
 		YcirHead += incYcir; //incrementa o centro do circulo em Y.
 		YcirButt += incYcir;
+		Yart1pata1 += incYcir;
+		Yart2pata1 += incYcir;
+		Yart1pata2 += incYcir;
+		Yart2pata2 += incYcir;
 	}
 
 	glutPostRedisplay();				//Redesenha as figuras na janela.
