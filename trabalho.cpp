@@ -48,7 +48,7 @@ GLint Xposition = 400;
 GLint Yposition = 370;
 
 /*Funcao responsavel por desenhar todas as fuguras na janela.*/
-void Draw() {
+void onDisplay() {
 	glClear(GL_COLOR_BUFFER_BIT);		//Limpa o buffer responsavel por desenhar
 
 	/*Quando se altera o tamanho da tela a imagem acompanha*/
@@ -60,72 +60,76 @@ void Draw() {
 	glMatrixMode(GL_MODELVIEW);			//Projeta a imagem na tela
 	glLoadIdentity();					//Carrega MatrixMode.
 
-	glBegin(GL_POLYGON);        										//Inicia o desenho de um poligono.
-	glColor3f(0.02,0.02,0.02);													//Cor do poligono.
-	for (float i = 0; i < 2*PI ; i+=0.1){								//Rotaciona os pontos do poligono para formar um circulo.
- 		glVertex2f(30.0*(float)cos(i)+XcirHead , 30.0*(float)sin(i)+YcirHead);	//Coordenadas do circulo de raio 20 pixels.
-	}
- 	glEnd();															//Finaliza o circulo.
 
-	/*Desenha Circulo*/
-	glMatrixMode(GL_MODELVIEW);			//Projeta a imagem na tela
-	glLoadIdentity();					//Carrega MatrixMode.
+	glPushMatrix();
+	{
+		glBegin(GL_POLYGON);        										//Inicia o desenho de um poligono.
+		glColor3f(0.02,0.02,0.02);													//Cor do poligono.
+		for (float i = 0; i < 2*PI ; i+=0.1){								//Rotaciona os pontos do poligono para formar um circulo.
+	 		glVertex2f(30.0*(float)cos(i)+XcirHead , 30.0*(float)sin(i)+YcirHead);	//Coordenadas do circulo de raio 20 pixels.
+		}
+	 	glEnd();															//Finaliza o circulo.
+
+		/*Desenha Circulo*/
+		glMatrixMode(GL_MODELVIEW);			//Projeta a imagem na tela
+		glLoadIdentity();					//Carrega MatrixMode.
 
 
-	glBegin(GL_POLYGON);        										//Inicia o desenho de um poligono.
-	glColor3f(0.02,0.02,0.02);													//Cor do poligono.
-	for (float i = 0; i < 2*PI ; i+=0.1){								//Rotaciona os pontos do poligono para formar um circulo.
- 		glVertex2f(50.0*(float)cos(i)+XcirButt , 50.0*(float)sin(i)+YcirButt);	//Coordenadas do circulo de raio 20 pixels.
-	}
- 	glEnd();	
+		glBegin(GL_POLYGON);        										//Inicia o desenho de um poligono.
+		glColor3f(0.02,0.02,0.02);													//Cor do poligono.
+		for (float i = 0; i < 2*PI ; i+=0.1){								//Rotaciona os pontos do poligono para formar um circulo.
+	 		glVertex2f(50.0*(float)cos(i)+XcirButt , 50.0*(float)sin(i)+YcirButt);	//Coordenadas do circulo de raio 20 pixels.
+		}
+	 	glEnd();	
 
-	/*Desenha articulação 1 da pata 1*/
-	glMatrixMode(GL_MODELVIEW);			//Projeta a imagem na tela.
-	glLoadIdentity();					//Carrega MatrixMode.
+		/*Desenha articulação 1 da pata 1*/
+		glMatrixMode(GL_MODELVIEW);			//Projeta a imagem na tela.
+		glLoadIdentity();					//Carrega MatrixMode.
 
-	glBegin(GL_QUADS);				//Inicia o desenho do triangulo
-		glColor3f(0,0,0);					//cor do triangulo
-		glVertex2f(Xart1pata1-40,Yart1pata1+10);			//Coordenadas dos pontos do triangulo.
-		glVertex2f(Xart1pata1-40,Yart1pata1+25);
-		glVertex2f(Xart1pata1+20,Yart1pata1-5);
-		glVertex2f(Xart1pata1+30,Yart1pata1-25);
-	glEnd();							
+		glBegin(GL_QUADS);				//Inicia o desenho do triangulo
+			glColor3f(0,0,0);					//cor do triangulo
+			glVertex2f(Xart1pata1-40,Yart1pata1+10);			//Coordenadas dos pontos do triangulo.
+			glVertex2f(Xart1pata1-40,Yart1pata1+25);
+			glVertex2f(Xart1pata1+20,Yart1pata1-5);
+			glVertex2f(Xart1pata1+30,Yart1pata1-25);
+		glEnd();							
 
-	/*Desenha articulação 2 da pata 1*/
-	glMatrixMode(GL_MODELVIEW);			//Projeta a imagem na tela.
-	glLoadIdentity();					//Carrega MatrixMode.
+		/*Desenha articulação 2 da pata 1*/
+		glMatrixMode(GL_MODELVIEW);			//Projeta a imagem na tela.
+		glLoadIdentity();					//Carrega MatrixMode.
 
-	glBegin(GL_QUADS);				//Inicia o desenho do triangulo
-		glColor3f(0,0,0);					//cor do triangulo
-		glVertex2f(Xart2pata1-70,Yart2pata1-35);			//Coordenadas dos pontos do triangulo.
-		glVertex2f(Xart2pata1-40,Yart2pata1-15);
-		glVertex2f(Xart2pata1+30,Yart2pata1+20);
-		glVertex2f(Xart2pata1+30,Yart2pata1+5);
-	glEnd();									
+		glBegin(GL_QUADS);				//Inicia o desenho do triangulo
+			glColor3f(0,0,0);					//cor do triangulo
+			glVertex2f(Xart2pata1-70,Yart2pata1-35);			//Coordenadas dos pontos do triangulo.
+			glVertex2f(Xart2pata1-40,Yart2pata1-15);
+			glVertex2f(Xart2pata1+30,Yart2pata1+20);
+			glVertex2f(Xart2pata1+30,Yart2pata1+5);
+		glEnd();									
 
-	/*articulação 1 da pata 2*/
-	glMatrixMode(GL_MODELVIEW);			//Projeta a imagem na tela.
-	glLoadIdentity();					//Carrega MatrixMode.
+		/*articulação 1 da pata 2*/
+		glMatrixMode(GL_MODELVIEW);			//Projeta a imagem na tela.
+		glLoadIdentity();					//Carrega MatrixMode.
 
-	glBegin(GL_QUADS);				//Inicia o desenho do triangulo
-		glColor3f(0,0,0);					//cor do triangulo
-		glVertex2f(Xart1pata2+40,Yart1pata2+25);			//Coordenadas dos pontos do triangulo.
-		glVertex2f(Xart1pata2+40,Yart1pata2+10);
-		glVertex2f(Xart1pata2-30,Yart1pata2-25);
-		glVertex2f(Xart1pata2-20,Yart1pata2-5);
-	glEnd();							
+		glBegin(GL_QUADS);				//Inicia o desenho do triangulo
+			glColor3f(0,0,0);					//cor do triangulo
+			glVertex2f(Xart1pata2+40,Yart1pata2+25);			//Coordenadas dos pontos do triangulo.
+			glVertex2f(Xart1pata2+40,Yart1pata2+10);
+			glVertex2f(Xart1pata2-30,Yart1pata2-25);
+			glVertex2f(Xart1pata2-20,Yart1pata2-5);
+		glEnd();							
 
-	/*Desenha articulação 2 da pata 2*/
-	glMatrixMode(GL_MODELVIEW);			//Projeta a imagem na tela.
-	glLoadIdentity();					//Carrega MatrixMode.
+		/*Desenha articulação 2 da pata 2*/
+		glMatrixMode(GL_MODELVIEW);			//Projeta a imagem na tela.
+		glLoadIdentity();					//Carrega MatrixMode.
 
-	glBegin(GL_QUADS);				
-		glColor3f(0,0,0);					
-		glVertex2f(Xart2pata2+40,Yart2pata2-15);			
-		glVertex2f(Xart2pata2+70,Yart2pata2-35);
-		glVertex2f(Xart2pata2-30,Yart2pata2+5);
-		glVertex2f(Xart2pata2-30,Yart2pata2+20);
-	glEnd();								
+		glBegin(GL_QUADS);				
+			glColor3f(0,0,0);					
+			glVertex2f(Xart2pata2+40,Yart2pata2-15);			
+			glVertex2f(Xart2pata2+70,Yart2pata2-35);
+			glVertex2f(Xart2pata2-30,Yart2pata2+5);
+			glVertex2f(Xart2pata2-30,Yart2pata2+20);
+		glEnd();	
+	}							
 
 	glutSwapBuffers();					//Troca o buffer
 	glFlush();
@@ -195,7 +199,7 @@ void Inicializa(int argc, char **argv) {
 void InputeOutput() {
 
 	glutMouseFunc(Mouse);				//Funcao responsavel pelos controles do mouse.
-	glutDisplayFunc(Draw);				//Funcao responsavel por redesenhar a tela.
+	glutDisplayFunc(onDisplay);				//Funcao responsavel por redesenhar a tela.
 	Movimenta();
 }
 
