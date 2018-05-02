@@ -1,3 +1,7 @@
+//Choyoung Lim 6436060
+//Luiz Eduardo Dorici 4165850
+
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <iostream>
