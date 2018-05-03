@@ -1,11 +1,8 @@
 all:
-	@g++ -o trabalho trabalho.cpp -lglut -lGLU -lGL -Wall -lm
-
-run:
-	@./trabalho
+	@g++ -Wall -lglut -lGLU -lGL -lm -o trab trab1.cpp
 
 clean:
-	@rm trabalho
+	@rm trab
 
-zip:
-	@zip -r testeT1CG trabalho.cpp Makefile
+run:
+	@./trab
