@@ -1,6 +1,6 @@
-//Choyoung Lim				6436060
-//Luiz Eduardo Dorici		4165850
-//Aulos Plautius M Marino	7986409
+//Choyoung Lim                6436060
+//Luiz Eduardo Dorici        4165850
+//Aulos Plautius M Marino    7986409
 
 #include <stdarg.h>
 #include <stdio.h>
@@ -26,7 +26,7 @@ const float ORTHO_HEIGHT = ORTHO_UP - ORTHO_DOWN;
 #define FPS 30
 
 const int FRAME_TIME_MS = 1000 / FPS;
-const int WINDOW_WIDTH = 800; 
+const int WINDOW_WIDTH = 800;
 const int WINDOW_HEIGHT = 600;
 
 
@@ -88,15 +88,15 @@ void drawSpider() {
     //cefalotorax
     glBegin(GL_POLYGON);
     //Inicia o desenho de um poligono.
-    glColor3f(0.02,0.02,0.02);											//Cor do poligono.
-    for (float i = 0; i < 2*PI ; i+=0.1){								//Rotaciona os pontos do poligono para formar um circulo.
-        glVertex2f(30.0*(float)cos(i)+Xctx , 30.0*(float)sin(i)+Yctx);	//Coordenadas do circulo de raio 20 pixels.
+    glColor3f(0.02,0.02,0.02);                                            //Cor do poligono.
+    for (float i = 0; i < 2*PI ; i+=0.1){                                //Rotaciona os pontos do poligono para formar um circulo.
+        glVertex2f(30.0*(float)cos(i)+Xctx , 30.0*(float)sin(i)+Yctx);    //Coordenadas do circulo de raio 20 pixels.
     }
     glEnd();                                                            //Finaliza o circulo.
     
     //abdomen
     glBegin(GL_POLYGON);                                                //Inicia o desenho de um poligono.
-    glColor3f(0.02,0.02,0.02);                                        	//Cor do poligono.
+    glColor3f(0.02,0.02,0.02);                                            //Cor do poligono.
     for (float i = 0; i < 2*PI ; i+=0.1){                                //Rotaciona os pontos do poligono para formar um circulo.
         glVertex2f(50.0*(float)cos(i)+Xabd , 50.0*(float)sin(i)+Yabd);    //Coordenadas do circulo de raio 20 pixels.
     }
@@ -104,104 +104,104 @@ void drawSpider() {
     
     //perna 1
     glBegin(GL_LINES);
-    glColor3f(1,0,0.0);
+    glColor3f(0,0,0.0);
     glVertex2f(Xctx, Yctx);
     glVertex2f(X11, Y11);
     glEnd();
     
     glBegin(GL_LINES);
-    glColor3f(1,0,0.0);
+    glColor3f(0,0,0.0);
     glVertex2f(X11, Y11);
     glVertex2f(X12, Y12);
     glEnd();
     
     //perna 2
     glBegin(GL_LINES);
-    glColor3f(0,1,0.0);
+    glColor3f(0,0,0);
     glVertex2f(Xctx, Yctx);
     glVertex2f(X21, Y21);
     glEnd();
     
     glBegin(GL_LINES);
-    glColor3f(0,1,0.0);
+    glColor3f(0,0,0);
     glVertex2f(X21, Y21);
     glVertex2f(X22, Y22);
     glEnd();
     
     //perna 3
     glBegin(GL_LINES);
-    glColor3f(0,0,1.0);
+    glColor3f(0,0,0);
     glVertex2f(Xctx, Yctx);
     glVertex2f(X31, Y31);
     glEnd();
     
     glBegin(GL_LINES);
-    glColor3f(0,0,1.0);
+    glColor3f(0,0,0);
     glVertex2f(X31, Y31);
     glVertex2f(X32, Y32);
     glEnd();
     
     //perna 4
     glBegin(GL_LINES);
-    glColor3f(1,1,0.0);
+    glColor3f(0,0,0.0);
     glVertex2f(Xctx, Yctx);
     glVertex2f(X41, Y41);
     glEnd();
     
     glBegin(GL_LINES);
-    glColor3f(1,1,0.0);
+    glColor3f(0,0,0.0);
     glVertex2f(X41, Y41);
     glVertex2f(X42, Y42);
     glEnd();
     
     //perna 1d
     glBegin(GL_LINES);
-    glColor3f(1,0,0.0);
+    glColor3f(0,0,0.0);
     glVertex2f(Xctx, Yctx);
     glVertex2f(X11d, Y11);
     glEnd();
     
     glBegin(GL_LINES);
-    glColor3f(1,0,0.0);
+    glColor3f(0,0,0.0);
     glVertex2f(X11d, Y11);
     glVertex2f(X12d, Y12);
     glEnd();
     
     //perna 2d
     glBegin(GL_LINES);
-    glColor3f(0,1,0.0);
+    glColor3f(0,0,0.0);
     glVertex2f(Xctx, Yctx);
     glVertex2f(X21d, Y21);
     glEnd();
     
     glBegin(GL_LINES);
-    glColor3f(0,1,0.0);
+    glColor3f(0,0,0.0);
     glVertex2f(X21d, Y21);
     glVertex2f(X22d, Y22);
     glEnd();
     
     //perna 3d
     glBegin(GL_LINES);
-    glColor3f(0,0,1.0);
+    glColor3f(0,0,0);
     glVertex2f(Xctx, Yctx);
     glVertex2f(X31d, Y31);
     glEnd();
     
     glBegin(GL_LINES);
-    glColor3f(0,0,1.0);
+    glColor3f(0,0,0);
     glVertex2f(X31d, Y31);
     glVertex2f(X32d, Y32);
     glEnd();
     
     //perna 4d
     glBegin(GL_LINES);
-    glColor3f(1,1,0.0);
+    glColor3f(0,0,0.0);
     glVertex2f(Xctx, Yctx);
     glVertex2f(X41d, Y41);
     glEnd();
     
     glBegin(GL_LINES);
-    glColor3f(1,1,0.0);
+    glColor3f(0,0,0.0);
     glVertex2f(X41d, Y41);
     glVertex2f(X42d, Y42);
     glEnd();
@@ -279,7 +279,7 @@ void onDisplay(void) {
     
     float mouseX, mouseY;
     screenToWorldCoordinates(globalMouseScreenX, globalMouseScreenY, &mouseX, &mouseY);
-
+    
     glPushMatrix();
     {
         glTranslatef(globalArrowX, globalArrowY, 0.0);
@@ -306,14 +306,14 @@ void onTimerTick(int frameCounter) {
 void Mouse(GLint botao, GLint estado,  GLint x, GLint y) {
     //Verifica se houve click com o botao esquerdo do mouse.
     if(botao == GLUT_LEFT_BUTTON && estado == GLUT_DOWN) {
-
+        
         globalMouseScreenX = x;
         globalMouseScreenY = y;
     }
 }
 
 void InputeOutput() {
-    glutMouseFunc(Mouse);                		//Funcao responsavel pelos controles do mouse.
+    glutMouseFunc(Mouse);                        //Funcao responsavel pelos controles do mouse.
     glutDisplayFunc(onDisplay);                //Funcao responsavel por redesenhar a tela.
 }
 
@@ -328,7 +328,7 @@ int main(int argc, char **argv)
     glutCreateWindow("OpenGL");
     
     glutDisplayFunc(onDisplay);
-	InputeOutput();
+    InputeOutput();
     glutIdleFunc(InputeOutput);
     glutTimerFunc(0, onTimerTick, 0);
     glutMainLoop();
