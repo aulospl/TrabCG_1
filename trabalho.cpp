@@ -1,6 +1,6 @@
-//Choyoung Lim 6436060
-//Luiz Eduardo Dorici 4165850
-
+//Choyoung Lim				6436060
+//Luiz Eduardo Dorici		4165850
+//Aulos Plautius M Marino	7986409
 
 #include <stdlib.h>
 #include <stdio.h>
