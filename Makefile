@@ -1,5 +1,5 @@
 all:
-	@g++ -Wall -lglut -lGLU -lGL -lm -o trab trab1.cpp
+	@g++ -Wall -lglut -lGLU -lGL -lm -o trab trab2.cpp
 
 clean:
 	@rm trab

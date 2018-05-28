@@ -1,4 +1,4 @@
-//Choyoung Lim                6436060
+//Choyoung Lim               6436060
 //Luiz Eduardo Dorici        4165850
 //Aulos Plautius M Marino    7986409
 
@@ -230,7 +230,7 @@ void updateArrowPosition(float targetX, float targetY) {
     globalArrowY += speedY;
 }
 
-
+// Rotaciona matriz para olhar na direção do cursor
 void lookTowards(float fromX, float fromY, float toX, float toY) {
     GLfloat directionX = toX - fromX;
     GLfloat directionY = toY - fromY;
@@ -265,7 +265,7 @@ void onDisplay(void) {
     
     globalTimerTriggered = 0;
     
-    
+    // fundo branco
     glClearColor(1.0, 1.0, 1.0, 0.0);
     glClear(GL_COLOR_BUFFER_BIT);
     
