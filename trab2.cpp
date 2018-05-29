@@ -2,9 +2,8 @@
 #include <GL/glut.h>
 #include <GL/glu.h>
 
-int width = 500;
-int height = 500;
-
+int width = 1200;
+int height = 1200;
 /**
  * @desc Desenha eixos de um sistema de coordenadas.
  * @param {float*} basePoint Ponto de origem de um sistema de coordenadas.
@@ -66,47 +65,56 @@ void displayCallback()
 	glClear(GL_COLOR_BUFFER_BIT);
 
 	glColor3f(1.0f, 0.0f, 0.0f);
-	/** Desenha a janela mais a esquerda */
+	/** Desenha a janela esquerda inferior */
 	glViewport(0, 0, width/2, height/2);
 	glLoadIdentity();
-	gluLookAt(3.0, 2.0, 10.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
+	//gluLookAt(3.0, 2.0, 10.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
+	gluLookAt(10.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
 	drawWCAxes();
 	glRotatef(-90.0, 1.0, 0.0, 0.0);
-	//glutSolidCone(1.0, 2.0, 4, 4);
 	glTranslatef(5.0, 8.0, 8.0);
-	glutSolidSphere(2.0, 10, 10);
+	//glutSolidSphere(2.0, 10, 10);
 	glTranslatef(-5.0, -8.0, -8.0);
-	glutSolidSphere(2.0, 10, 10);
+	//glutSolidSphere(2.0, 10, 10);
 	
 	//glutSolidSphere(2.0, 10, 10);
 
-	/** Desenha a janela mais a direita */
+	/** Desenha a janela direita inferior */
 	glViewport(width/2, 0, width/2, height/2);
 	glLoadIdentity();
 	gluLookAt(0.0, 0.0, 10.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
 	drawWCAxes();
 	glRotatef(-90.0, 1.0, 0.0, 0.0);
-	//glutSolidCone(1.0, 2.0, 4, 4);
 	glTranslatef(5.0, 8.0, 8.0);
-	glutSolidSphere(2.0, 10, 10);
+	//glutSolidSphere(2.0, 10, 10);
 	glTranslatef(-5.0, -8.0, -8.0);
-	glutSolidSphere(2.0, 10, 10);
+	//glutSolidSphere(2.0, 10, 10);
 
 
-	// esq inf
+	/* Desenha janela esquerda superior*/
 	glViewport(0, height/2, width/2, height/2);
 	glLoadIdentity();
 	gluLookAt(2.0, 1.0, 10.0, 0.0, 0.0, 0.0, 0.0, 10.0, 0.0);
 	drawWCAxes();
 	glRotatef(-90.0, 1.0, 0.0, 0.0);
-	//glutSolidCone(1.0, 2.0, 4, 4);
 	glTranslatef(5.0, 8.0, 8.0);
-	glutSolidSphere(2.0, 10, 10);
+	//glutSolidSphere(2.0, 10, 10);
 	glTranslatef(-5.0, -8.0, -8.0);
-	glutSolidSphere(2.0, 10, 10);
+	//glutSolidSphere(2.0, 10, 10);
 
-
-	/** Dispara os comandos APENAS uma vez */
+	/* Desenha janela direita superior */
+	glViewport(width/2, height/2, width/2, height/2);
+	glLoadIdentity();		
+	//gluLookAt(1.0, 0.0, 10.0, 0.0, 1.0, 0.0, 1.0, 1.0, 0.5);
+	gluLookAt(0.0, 10.0, 0.0, 0.0, 0.0, 0.0, 10.0, 0.0, 0.0);
+	drawWCAxes();
+	glRotatef(-90.0, 1.0, 0.0, 0.0);
+	glTranslatef(5.0, 8.0, 8.0);
+	//glutSolidSphere(2.0, 10, 10);
+	glTranslatef(-5.0, -8.0, -8.0);
+	//glutSolidSphere(2.0, 10, 10);
+	
+/** Dispara os comandos APENAS uma vez */
 	glFlush();
 }
 
@@ -134,7 +142,7 @@ int main(int argc, char **argv)
 	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
 	glutInitWindowPosition(100, 100);
 	glutInitWindowSize(width, height);
-	glutCreateWindow("Duas viewports");
+	glutCreateWindow("Trabalho Parte 2");
 	glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 
 	/** Passo 2: Registra callbacks da OpenGl */
