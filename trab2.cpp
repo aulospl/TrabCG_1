@@ -73,12 +73,10 @@ void displayCallback()
 	drawWCAxes();
 	glRotatef(-90.0, 1.0, 0.0, 0.0);
 	glTranslatef(5.0, 8.0, 8.0);
-	//glutSolidSphere(2.0, 10, 10);
+	glutSolidSphere(2.0, 10, 10);
 	glTranslatef(-5.0, -8.0, -8.0);
-	//glutSolidSphere(2.0, 10, 10);
+	glutSolidSphere(2.0, 10, 10);
 	
-	//glutSolidSphere(2.0, 10, 10);
-
 	/** Desenha a janela direita inferior */
 	glViewport(width/2, 0, width/2, height/2);
 	glLoadIdentity();
@@ -86,9 +84,9 @@ void displayCallback()
 	drawWCAxes();
 	glRotatef(-90.0, 1.0, 0.0, 0.0);
 	glTranslatef(5.0, 8.0, 8.0);
-	//glutSolidSphere(2.0, 10, 10);
+	glutSolidSphere(2.0, 10, 10);
 	glTranslatef(-5.0, -8.0, -8.0);
-	//glutSolidSphere(2.0, 10, 10);
+	glutSolidSphere(2.0, 10, 10);
 
 
 	/* Desenha janela esquerda superior*/
@@ -98,9 +96,9 @@ void displayCallback()
 	drawWCAxes();
 	glRotatef(-90.0, 1.0, 0.0, 0.0);
 	glTranslatef(5.0, 8.0, 8.0);
-	//glutSolidSphere(2.0, 10, 10);
+	glutSolidSphere(2.0, 10, 10);
 	glTranslatef(-5.0, -8.0, -8.0);
-	//glutSolidSphere(2.0, 10, 10);
+	glutSolidSphere(2.0, 10, 10);
 
 	/* Desenha janela direita superior */
 	glViewport(width/2, height/2, width/2, height/2);
@@ -110,9 +108,9 @@ void displayCallback()
 	drawWCAxes();
 	glRotatef(-90.0, 1.0, 0.0, 0.0);
 	glTranslatef(5.0, 8.0, 8.0);
-	//glutSolidSphere(2.0, 10, 10);
+	glutSolidSphere(2.0, 10, 10);
 	glTranslatef(-5.0, -8.0, -8.0);
-	//glutSolidSphere(2.0, 10, 10);
+	glutSolidSphere(2.0, 10, 10);
 	
 /** Dispara os comandos APENAS uma vez */
 	glFlush();
