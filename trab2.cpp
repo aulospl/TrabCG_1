@@ -49,6 +49,8 @@ GLfloat X32d = Xctx - -129;
 GLfloat X41d = Xctx - -50;
 GLfloat X42d = Xctx - -95;
 
+
+
 /**
  * @desc Desenha eixos de um sistema de coordenadas.
  * @param {float*} basePoint Ponto de origem de um sistema de coordenadas.
@@ -101,6 +103,19 @@ void drawWCAxes()
 	drawAxes(basePoint, i, j, k);
 }
 
+void drawSpider(){	
+	glRotatef(-90.0, 1.0, 0.0, 0.0);
+	glTranslatef(3.5, 0.0, 0.0);
+	glutSolidSphere(2.0, 30, 30);
+	glTranslatef(-3.5, -0.0, -0.0);
+	glutSolidSphere(1.75, 30, 30);
+	glBegin(GL_LINES);
+  		glVertex3f(0.0f, 0.0f, 0.0f);
+  		glVertex3f(5.0f, 5.0f, 5.0f);
+	glEnd();
+}
+
+
 /**
  * @desc Função de callback para desenho na tela.
  */
@@ -133,63 +148,31 @@ void displayCallback()
 	//gluLookAt(3.0, 2.0, 10.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
 	gluLookAt(10.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
 	drawWCAxes();
-	glRotatef(-90.0, 1.0, 0.0, 0.0);
-	glTranslatef(3.5, 0.0, 0.0);
-	glutSolidSphere(2.0, 30, 30);
-	glTranslatef(-3.5, -0.0, -0.0);
-	glutSolidSphere(1.75, 30, 30);
-	glBegin(GL_LINES);
-  		glVertex3f(0.0f, 0.0f, 0.0f);
-  		glVertex3f(5.0f, 5.0f, 5.0f);
-	glEnd();
+	drawSpider();
 
 	/** Desenha a janela direita inferior */
 	glViewport(width/2, 0, width/2, height/2);
 	glLoadIdentity();
 	gluLookAt(0.0, 0.0, 10.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
 	drawWCAxes();
-	glRotatef(-90.0, 1.0, 0.0, 0.0);
-	glTranslatef(3.5, 0.0, 0.0);
-	glutSolidSphere(2.0, 30, 30);
-	glBegin(GL_LINES);
-		glVertex3f(5.0f, 5.0f, 5.0f);
-  		glVertex3f(5.0f, 5.0f, 5.0f);
-	glEnd();
-	glBegin(GL_LINES);
-		glVertex3f(5.0f, 5.0f, 5.0f);
-		glVertex3f(0.0f, 0.0f, -5.0f);
-	glEnd();
+	drawSpider();	
+
 	/* Desenha janela esquerda superior*/
 	glViewport(0, height/2, width/2, height/2);
 	glLoadIdentity();
 	gluLookAt(2.0, 1.0, 10.0, 0.0, 0.0, 0.0, 0.0, 10.0, 0.0);
 	drawWCAxes();
-	glRotatef(-90.0, 1.0, 0.0, 0.0);
-	glTranslatef(3.5, 0.0, 0.0);
-	glutSolidSphere(2.0, 30, 30);
-	glTranslatef(-3.5, -0.0, -0.0);
-	glutSolidSphere(1.75, 30, 30);
+	drawSpider();	
 
-	glBegin(GL_LINES);
-  		glVertex3f(0.0f, 0.0f, 0.0f);
-  		glVertex3f(5.0f, 5.0f, 5.0f);
-	glEnd();
 	/* Desenha janela direita superior */
 	glViewport(width/2, height/2, width/2, height/2);
 	glLoadIdentity();
 	//gluLookAt(1.0, 0.0, 10.0, 0.0, 1.0, 0.0, 1.0, 1.0, 0.5);
 	gluLookAt(0.0, 10.0, 0.0, 0.0, 0.0, 0.0, 10.0, 0.0, 0.0);
 	drawWCAxes();
-	glRotatef(-90.0, 1.0, 0.0, 0.0);
-	glTranslatef(3.5, 0.0, 0.0);
-	glutSolidSphere(2.0, 30, 30);
-	glTranslatef(-3.5, -0.0, -0.0);
-	glutSolidSphere(1.75, 30, 30);
-	glBegin(GL_LINES);
-  		glVertex3f(0.0f, 0.0f, 0.0f);
-  		glVertex3f(5.0f, 5.0f, 5.0f);
-	glEnd();
-/** Dispara os comandos APENAS uma vez */
+	drawSpider();
+
+	/** Dispara os comandos APENAS uma vez */
 	glFlush();
 }
 
