@@ -60,7 +60,7 @@ void drawAxes(float *basePoint, float *i, float *j, float *k)
 {
   float currentColor[4];
   /** Armazena cor atual */
-  glGetFloatv(GL_CURRENT_COLOR, currentColor);	
+  glGetFloatv(GL_CURRENT_COLOR, currentColor);
   /** Desenha versores */
   glColor3f(1.0, 0.0, 0.0);
   glBegin(GL_LINES);
@@ -108,7 +108,21 @@ void displayCallback()
 {
 	/** Limpa a janela APENAS uma vez */
 	glClear(GL_COLOR_BUFFER_BIT);
-	
+
+  glViewport(0, 0, width, height);
+  glLoadIdentity();
+  gluLookAt(0.0, 0.0, 10.0, 0.0, 0.0, 0.0, 10.0, 0.0, 0.0);
+  glColor3f(0.0, 0.0, 0.0);
+  glBegin(GL_LINES);
+  glVertex3f(0, -height, 0);
+  glVertex3f(0, height, 0);
+  glEnd();
+  glColor3f(0.0, 0.0, 0.0);
+  glBegin(GL_LINES);
+  glVertex3f(-width, 0, 0);
+  glVertex3f(width, 0, 0);
+  glEnd();
+  
 	/* Espessura da linha-perna */
 	glLineWidth(3.0f);
 
@@ -128,7 +142,7 @@ void displayCallback()
   		glVertex3f(0.0f, 0.0f, 0.0f);
   		glVertex3f(5.0f, 5.0f, 5.0f);
 	glEnd();
-	
+
 	/** Desenha a janela direita inferior */
 	glViewport(width/2, 0, width/2, height/2);
 	glLoadIdentity();
@@ -162,7 +176,7 @@ void displayCallback()
 	glEnd();
 	/* Desenha janela direita superior */
 	glViewport(width/2, height/2, width/2, height/2);
-	glLoadIdentity();		
+	glLoadIdentity();
 	//gluLookAt(1.0, 0.0, 10.0, 0.0, 1.0, 0.0, 1.0, 1.0, 0.5);
 	gluLookAt(0.0, 10.0, 0.0, 0.0, 0.0, 0.0, 10.0, 0.0, 0.0);
 	drawWCAxes();
@@ -170,7 +184,7 @@ void displayCallback()
 	glTranslatef(3.5, 0.0, 0.0);
 	glutSolidSphere(2.0, 30, 30);
 	glTranslatef(-3.5, -0.0, -0.0);
-	glutSolidSphere(1.75, 30, 30);	
+	glutSolidSphere(1.75, 30, 30);
 	glBegin(GL_LINES);
   		glVertex3f(0.0f, 0.0f, 0.0f);
   		glVertex3f(5.0f, 5.0f, 5.0f);
