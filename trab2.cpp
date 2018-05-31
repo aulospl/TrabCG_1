@@ -22,12 +22,6 @@ GLint globalFrameCounter = 0;
 GLint globalMouseScreenX = 0;
 GLint globalMouseScreenY = 0;
 GLint globalTimerTriggered = 0;
-
-#define ARROW_UNITS_PER_SEC 120.0
-#define ARROW_THRESHOLD 5.0
-GLfloat globalArrowX = 50;
-GLfloat globalArrowY = 50;
-
 const int FRAME_TIME_MS = 1000 / FPS;
 GLfloat angle = 0;
 // eixo X = vermelho
@@ -41,6 +35,8 @@ GLfloat Yctx = 0;                        //posicao em Y do centro do cabeça da 
 GLfloat Xabd = 0;                        //posicao em X do centro da bunda da aranha.
 GLfloat Yabd = -70;                        //posicao em Y do centro da bunda da aranha.
 
+//pernas
+//XYZ dos pontos da aresta.
 GLfloat X11 = Xctx + -2.5;
 GLfloat Y11 = Yctx + 2.5;
 GLfloat X12 = Xctx + -3.75;
@@ -60,7 +56,7 @@ GLfloat X41 = Xctx + -2.5;
 GLfloat Y41 = Yctx + -2;
 GLfloat X42 = Xctx + -4.75;
 GLfloat Y42 = Yctx + -5.25;
-
+//X do outro lado
 GLfloat X11d = Xctx - -2.5;
 GLfloat X12d = Xctx - -3.75;
 
@@ -72,7 +68,7 @@ GLfloat X32d = Xctx - -6.5;
 
 GLfloat X41d = Xctx - -2.5;
 GLfloat X42d = Xctx - -4.75;
-
+//Z dos pontos da perna
 GLfloat Zart = 3;
 GLfloat Zbase = -2;
 
@@ -169,7 +165,7 @@ void drawSpider(){
     glVertex3f(X42, Y42, Zbase);
     glEnd();
 
-    //patas direita
+    //patas direitas
     glBegin(GL_LINES);
     glVertex3f(0.0f, 0.0f, 0.0f);
     glVertex3f(X11d, Y11, Zart);
@@ -306,6 +302,7 @@ void reshapeCallback(int w, int h)
 }
 
 
+// Função para contar o tempo */
 void onTimerTick(int frameCounter) {
     globalTimerTriggered = 1;
     globalFrameCounter = frameCounter;
@@ -332,10 +329,11 @@ int main(int argc, char **argv)
     glutDisplayFunc(displayCallback);
     glutReshapeFunc(reshapeCallback);
 
+    /** Passo 3: função ocioso */
     glutIdleFunc(displayCallback);
     glutTimerFunc(0, onTimerTick, 0);
 
-    /** Passo 3: Executa o programa */
+    /** Passo 4: Executa o programa */
     glutMainLoop();
     return 0;
 }
