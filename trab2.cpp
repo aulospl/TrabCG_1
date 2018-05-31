@@ -214,7 +214,7 @@ void displayCallback()
     if(globalTimerTriggered != 1) {
         return;
     }
-    angle += 0.1f;
+    angle += 0.5f;
     globalTimerTriggered = 0;
 
     glClear(GL_COLOR_BUFFER_BIT);
@@ -245,7 +245,6 @@ void displayCallback()
     {
         glRotatef(angle, 0.0f, 0.0f, 1.0f);
         drawSpider();
-        angle += 0.1f;
     }
     glPopMatrix();
     /** Desenha a janela direita inferior */
@@ -257,7 +256,6 @@ void displayCallback()
     {
         glRotatef(angle, 0.0f, 0.0f, 1.0f);
         drawSpider();
-        angle += 0.1f;
     }
     glPopMatrix();
     /* Desenha janela esquerda superior*/
@@ -269,7 +267,6 @@ void displayCallback()
     {
         glRotatef(angle, 0.0f, 0.0f, 1.0f);
         drawSpider();
-        angle += 0.1f;
     }
     glPopMatrix();
 
@@ -283,7 +280,6 @@ void displayCallback()
     {
         glRotatef(angle, 0.0f, 0.0f, 1.0f);
         drawSpider();
-        angle += 0.1f;
     }
     glPopMatrix();
     /** Dispara os comandos APENAS uma vez */
