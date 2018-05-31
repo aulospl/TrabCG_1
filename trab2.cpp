@@ -12,10 +12,24 @@
 #else
 #include <GL/glut.h>
 #endif
+#define FPS 30
 
-int width = 800;
-int height = 600;
+GLint width = 800;
+GLint height = 600;
 
+GLfloat globalTimeSeconds = 0;
+GLint globalFrameCounter = 0;
+GLint globalMouseScreenX = 0;
+GLint globalMouseScreenY = 0;
+GLint globalTimerTriggered = 0;
+
+#define ARROW_UNITS_PER_SEC 120.0
+#define ARROW_THRESHOLD 5.0
+GLfloat globalArrowX = 50;
+GLfloat globalArrowY = 50;
+
+const int FRAME_TIME_MS = 1000 / FPS;
+GLfloat angle = 0;
 // eixo X = vermelho
 // eixo Y = verde
 // eixo Z = azul
@@ -196,9 +210,14 @@ void drawSpider(){
  */
 void displayCallback()
 {
-    /** Limpa a janela APENAS uma vez */
-    glClear(GL_COLOR_BUFFER_BIT);
 
+    if(globalTimerTriggered != 1) {
+        return;
+    }
+    angle += 0.1f;
+    globalTimerTriggered = 0;
+
+    glClear(GL_COLOR_BUFFER_BIT);
     glViewport(0, 0, width, height);
     glLoadIdentity();
     gluLookAt(0.0, 0.0, 10.0, 0.0, 0.0, 0.0, 10.0, 0.0, 0.0);
@@ -220,24 +239,39 @@ void displayCallback()
     /** Desenha a janela esquerda inferior */
     glViewport(0, 0, width/2, height/2);
     glLoadIdentity();
-    //gluLookAt(3.0, 2.0, 10.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
     gluLookAt(15.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
     drawWCAxes();
-    drawSpider();
-
+    glPushMatrix();
+    {
+        glRotatef(angle, 0.0f, 0.0f, 1.0f);
+        drawSpider();
+        angle += 0.1f;
+    }
+    glPopMatrix();
     /** Desenha a janela direita inferior */
     glViewport(width/2, 0, width/2, height/2);
     glLoadIdentity();
     gluLookAt(0.0, 0.0, 15.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
     drawWCAxes();
-    drawSpider();
-
+    glPushMatrix();
+    {
+        glRotatef(angle, 0.0f, 0.0f, 1.0f);
+        drawSpider();
+        angle += 0.1f;
+    }
+    glPopMatrix();
     /* Desenha janela esquerda superior*/
     glViewport(0, height/2, width/2, height/2);
     glLoadIdentity();
     gluLookAt(2.0, 10.0, 15.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0);
     drawWCAxes();
-    drawSpider();
+    glPushMatrix();
+    {
+        glRotatef(angle, 0.0f, 0.0f, 1.0f);
+        drawSpider();
+        angle += 0.1f;
+    }
+    glPopMatrix();
 
     /* Desenha janela direita superior */
     glViewport(width/2, height/2, width/2, height/2);
@@ -245,9 +279,16 @@ void displayCallback()
     //gluLookAt(1.0, 0.0, 10.0, 0.0, 1.0, 0.0, 1.0, 1.0, 0.5);
     gluLookAt(0.0, 15.0, 0.0, 0.0, 0.0, 0.0, 10.0, 0.0, 0.0);
     drawWCAxes();
-    drawSpider();
+    glPushMatrix();
+    {
+        glRotatef(angle, 0.0f, 0.0f, 1.0f);
+        drawSpider();
+        angle += 0.1f;
+    }
+    glPopMatrix();
     /** Dispara os comandos APENAS uma vez */
     glFlush();
+
 }
 
 /**
@@ -257,6 +298,7 @@ void displayCallback()
  */
 void reshapeCallback(int w, int h)
 {
+
     /** Atualiza os valores da janela */
     width = w;
     height = h;
@@ -266,6 +308,19 @@ void reshapeCallback(int w, int h)
     gluPerspective(65.0, (GLfloat) width/(GLfloat) height, 1.0, 20.0);
     glMatrixMode(GL_MODELVIEW);
 }
+
+
+void onTimerTick(int frameCounter) {
+    globalTimerTriggered = 1;
+    globalFrameCounter = frameCounter;
+    globalTimeSeconds = frameCounter * FRAME_TIME_MS / 1000.0f;
+
+    glutTimerFunc(FRAME_TIME_MS, onTimerTick, frameCounter + 1);
+    glutPostRedisplay();
+}
+
+
+
 
 int main(int argc, char **argv)
 {
@@ -280,6 +335,9 @@ int main(int argc, char **argv)
     /** Passo 2: Registra callbacks da OpenGl */
     glutDisplayFunc(displayCallback);
     glutReshapeFunc(reshapeCallback);
+
+    glutIdleFunc(displayCallback);
+    glutTimerFunc(0, onTimerTick, 0);
 
     /** Passo 3: Executa o programa */
     glutMainLoop();
